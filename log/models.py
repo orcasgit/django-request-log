@@ -1,4 +1,3 @@
-import re
 import datetime
 
 from django.contrib.auth.models import User
@@ -15,9 +14,6 @@ class RequestLogManager(models.Manager):
                 return None
             # Truncate in case it doesn't fit
             url = url[:self.model._meta.get_field_by_name('url')[0].max_length]
-            if re.search(r'/api/[-\w]+/', url):
-                return None
-            # RequestLog only URLs that aren't API calls
             log = self.model(user=request.user,
                              session=request.session.session_key,
                              url=url,
