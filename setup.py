@@ -4,7 +4,7 @@ setup(
     name='orcas-log',
     version=__import__('log').__version__,
     description='Pluggable Django applications to record user login and logout events and URL views.',
-    long_description=open('README.rst').read(),
+    long_description=open('README.md').read(),
     author='Oregon Center for Applied Science',
     author_email='pperez@orcasinc.com',
     url='https://github.com/orcasgit/orcas-log',
