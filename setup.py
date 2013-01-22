@@ -8,7 +8,7 @@ setup(
     author='Oregon Center for Applied Science',
     author_email='pperez@orcasinc.com',
     url='https://github.com/orcasgit/orcas-log',
-    license='Apache',
+    license='Apache 2.0',
     packages=['log'],
     include_package_data=True,
     zip_safe=False,
