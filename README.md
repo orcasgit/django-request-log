@@ -10,6 +10,15 @@ Installation
 1. Add ``log`` to your ``INSTALLED_APPS``.
 
 2. Add ``log.middleware.RequestLoggingMiddleware`` to your ``MIDDLEWARE_CLASSES``
+````
+    MIDDLEWARE_CLASSES = (
+        'django.middleware.common.CommonMiddleware',
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        ...
+        'log.middleware.RequestLoggingMiddleware',
+    )
+````
 
 3. Add the line below to the project's  ``requirement.txt`` file:
 ````
