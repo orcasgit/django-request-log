@@ -70,9 +70,7 @@ class Log(models.Model):
         """
         logs = Log.objects.filter(
             user=user, varname=varname).order_by('-stamp')
-        if len(logs) > 0:
-            return logs[0].value
-        return None
+        return logs.exists() and logs[0].value or None
 
     @classmethod
     def has_varname(cls, user, varname):
@@ -80,9 +78,8 @@ class Log(models.Model):
         Checks to see if a given varname has been logged for this user.
         """
         logs = cls.objects.filter(user=user, varname=varname)
-        if logs:
-            return True
-        return False
+        return logs.exists()
+
 
 # Login/Logout signals
 from django.contrib.auth.signals import user_logged_in, user_logged_out
