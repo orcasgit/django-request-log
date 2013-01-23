@@ -11,12 +11,12 @@ Installation
 
 2. Add ``log.middleware.RequestLoggingMiddleware`` to your ``MIDDLEWARE_CLASSES``
 
-3. Add the line below to the project's  ``requirement.txt`` file
+3. Add the line below to the project's  ``requirement.txt`` file:
 ````
    git+https://github.com/orcasgit/orcas-log.git#egg=orcas-log
 ````
 
-4. Run
+4. Run:
 ````
     pip install -U -r requirements.txt
 ````
