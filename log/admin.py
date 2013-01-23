@@ -11,10 +11,10 @@ class LogAdmin(admin.ModelAdmin):
     save_on_top = True
 admin.site.register(Log, LogAdmin)
 
+
 class RequestLogAdmin(admin.ModelAdmin):
     list_display = ('user', 'session', 'url', 'stamp')
     ordering = ('-stamp',)
     list_filter = ('user',)
     save_on_top = True
 admin.site.register(RequestLog, RequestLogAdmin)
-
