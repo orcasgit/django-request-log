@@ -96,5 +96,6 @@ user_logged_in.connect(login_handler)
 
 
 def logout_handler(sender, request, **kwargs):
-    Log.objects.create_log('progstop', request)
+    if request.user.is_authenticated():
+        Log.objects.create_log('progstop', request)
 user_logged_out.connect(logout_handler)
