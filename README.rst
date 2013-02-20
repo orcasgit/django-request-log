@@ -10,22 +10,20 @@ Quickstart
 Installation
 ------------
 
-Add the line below to the project's requirement file:
-````
-   django-request-log
-````
-Or run:
-````
-    pip install django-request-log
-````
+django-request-log is available on PyPI_, so you can install it with ``pip``::
+
+    $ pip install django-request-log
+
+Or add the line below to the project's requirement file::
+
+    django-request-log
 
 Usage
 -----
 
 1. Add ``log`` to your ``INSTALLED_APPS``.
 
-2. Add ``log.middleware.RequestLoggingMiddleware`` to your ``MIDDLEWARE_CLASSES``
-````
+2. Add ``log.middleware.RequestLoggingMiddleware`` to your ``MIDDLEWARE_CLASSES``::
     MIDDLEWARE_CLASSES = (
         'django.middleware.common.CommonMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
@@ -33,12 +31,9 @@ Usage
         ...
         'log.middleware.RequestLoggingMiddleware',
     )
-````
 
-3. Run:
-````
-python manage.py syncdb
-````
+3. Run::
+    $ python manage.py syncdb
 
 TODOs and BUGS
 ==============
