@@ -86,6 +86,8 @@ from django.contrib.auth.signals import user_logged_in, user_logged_out
 
 
 def login_handler(sender, user, request, **kwargs):
+    if not hasattr(request, 'user'):
+        request.user = user
     Log.objects.create_log('progstar', request)
     Log.objects.create_log('VisitNo', request)
     Log.objects.create_log(
