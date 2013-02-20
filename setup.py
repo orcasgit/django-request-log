@@ -10,6 +10,7 @@ setup(
     url='https://github.com/orcasgit/django-request-log',
     license='Apache 2.0',
     packages=['log'],
+    package_data={'': ['LICENCE']},
     include_package_data=True,
     zip_safe=False,
     classifiers=[
@@ -17,7 +18,7 @@ setup(
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
-        'License :: OSI Approved ::Apache',
+        'License :: OSI Approved :: Apache Software License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.6',

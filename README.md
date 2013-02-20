@@ -1,11 +1,26 @@
-orcas-log
-=========
+django-request-log
+==================
 
-orcas-log is pluggable Django application to keep track user login and logout events and URLs views 
+django-request-log is pluggable Django application to keep track user login and logout events and URLs views 
 developed at ORCAS.
 
+Quickstart
+==========
+
 Installation
-============
+------------
+
+Add the line below to the project's requirement file:
+````
+   django-request-log
+````
+Or run:
+````
+    pip install django-request-log
+````
+
+Usage
+-----
 
 1. Add ``log`` to your ``INSTALLED_APPS``.
 
@@ -20,18 +35,12 @@ Installation
     )
 ````
 
-3. Add the line below to the project's  ``requirement.txt`` file:
+3. Run:
 ````
-   git+https://github.com/orcasgit/django-request-log.git#egg=request-log
-````
-
-4. Run:
-````
-    pip install -U -r requirements.txt
+python manage.py syncdb
 ````
 
 TODOs and BUGS
 ==============
 
-1. Add tests
-2. Update LICENCE
+See: https://github.com/orcasgit/django-request-log/issues
