@@ -22,7 +22,7 @@ Installation
 
 3. Add the line below to the project's  ``requirement.txt`` file:
 ````
-   git+https://github.com/orcasgit/orcas-log.git#egg=orcas-log
+   git+https://github.com/orcasgit/django-request-log.git#egg=request-log
 ````
 
 4. Run:
