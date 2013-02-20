@@ -32,3 +32,6 @@ Installation
 
 TODOs and BUGS
 ==============
+
+1. Add tests
+2. Update LICENCE
