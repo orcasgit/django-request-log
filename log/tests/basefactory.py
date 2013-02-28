@@ -14,12 +14,10 @@ class UserFactory(factory.Factory):
 
     @classmethod
     def _prepare(cls, create, **kwargs):
-        password = kwargs.pop('password', None)
+        plain_password = kwargs.pop('password')
         user = super(UserFactory, cls)._prepare(create, **kwargs)
-        if password:
-            user.set_password(password)
-            if create:
-                user.save()
+        user.set_password(plain_password)
+        user.save()
         return user
 
 
