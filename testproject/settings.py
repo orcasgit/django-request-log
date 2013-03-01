@@ -3,7 +3,9 @@ Use for testing on sqlite3...
 
 $ ./manage.py test
 """
+import os
 PROJECT_NAME = 'request-log'
+PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
 DATABASES = {
     'default': {
@@ -14,7 +16,6 @@ DATABASES = {
         'HOST': '',
     }
 }
-
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -37,4 +38,5 @@ NOSE_ARGS = [
 
 ROOT_URLCONF = 'testproject.urls'
 SECRET_KEY = '&6hr-f+2+5k!$-oq6*l7p79+^+txtckz7imdoi%!a&0h1t3d(@'
+TEMPLATE_DIRS = (os.path.join(PROJECT_PATH, 'templates'),)
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
