@@ -6,18 +6,12 @@ from log.models import Log
 from .basefactory import UserFactory
 
 
-class TestCaseBase(TestCase):
+class TestLog(TestCase):
 
     def setUp(self):
         self.user = UserFactory.create()
         self.client.post(reverse('login'), {'username': self.user.username,
                                             'password': 'password'})
-
-
-class TestLog(TestCaseBase):
-
-    def setUp(self):
-        super(TestLog, self).setUp()
 
     def test_login_handler(self):
         visit = Log.objects.filter(user=self.user, varname='VisitNo').count()
@@ -30,3 +24,14 @@ class TestLog(TestCaseBase):
     def test_has_varname(self):
         varname = Log.has_varname(self.user, 'UsrAgnt')
         eq_(varname, True)
+
+    def test_create_requestlog(self):
+        resp = self.client.get(reverse('create_requestlog'))
+        eq_(resp.status_code, 200)
+
+        path = resp.request.get('PATH_INFO')
+        eq_(path, '/create-log/')
+
+    def test_logout_handler(self):
+        resp = self.client.get(reverse('logout'))
+        eq_(resp.status_code, 200)
