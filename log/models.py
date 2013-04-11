@@ -1,8 +1,11 @@
 import datetime
 
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.db import models
 from django.middleware.common import _is_ignorable_404
+
+
+UserModel = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 
 class RequestLogManager(models.Manager):
@@ -25,7 +28,7 @@ class RequestLogManager(models.Manager):
 
 
 class RequestLog(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(UserModel)
     session = models.CharField(max_length=40)
     url = models.CharField(max_length=500)
     stamp = models.DateTimeField(null=True)
@@ -53,7 +56,7 @@ class LogManager(models.Manager):
 
 
 class Log(models.Model):
-    user = models.ForeignKey(User, null=True)
+    user = models.ForeignKey(UserModel, null=True)
     session = models.CharField(max_length=40)
     varname = models.CharField(max_length=30, db_index=True)
     stamp = models.DateTimeField(null=True)
