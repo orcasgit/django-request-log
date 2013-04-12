@@ -33,6 +33,7 @@ MIDDLEWARE_CLASSES = (
 NOSE_ARGS = [
     '--logging-clear-handlers',
     '--with-progressive',
+    '--tests=log.tests.test_log',
     '-s',
 ]
 
