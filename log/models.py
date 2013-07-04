@@ -10,7 +10,7 @@ UserModel = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 class RequestLogManager(models.Manager):
     def create_log(self, request):
-        if request.user and request.session:
+        if request.user and request.session and request.session.session_key:
             stamp = datetime.datetime.now()
             url = request.get_full_path()
             if _is_ignorable_404(url):
@@ -41,18 +41,21 @@ class RequestLog(models.Model):
 class LogManager(models.Manager):
     """Log manager to create log records"""
     def create_log(self, varname, request, value='', stamp=None):
-        if varname.startswith('E'):
-            # E just signifies we can remove these for the product version
-            varname = varname[1:]  # strip off the starting E
-        if not stamp:
-            stamp = datetime.datetime.now()
-        log = self.model(user=request.user,
-                         session=request.session.session_key,
-                         varname=varname,
-                         value=value,
-                         stamp=stamp)
-        log.save()
-        return log
+        if request.user and request.session and request.session.session_key:
+            if varname.startswith('E'):
+                # E just signifies we can remove these for the product version
+                varname = varname[1:]  # strip off the starting E
+            if not stamp:
+                stamp = datetime.datetime.now()
+            log = self.model(user=request.user,
+                             session=request.session.session_key,
+                             varname=varname,
+                             value=value,
+                             stamp=stamp)
+            log.save()
+            return log
+        else:
+            return None
 
 
 class Log(models.Model):
