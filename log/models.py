@@ -2,10 +2,17 @@ import datetime
 
 from django.conf import settings
 from django.db import models
-from django.middleware.common import _is_ignorable_404
 
 
 UserModel = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
+
+
+def is_ignorable_404(uri):
+    """
+    Returns True if a 404 at the given URL *shouldn't* notify the site managers.
+    """
+    return any(pattern.search(uri)
+               for pattern in getattr(settings, 'IGNORABLE_404_URLS', ()))
 
 
 class RequestLogManager(models.Manager):
