@@ -7,7 +7,7 @@ from django.db import models
 UserModel = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 
-def is_ignorable_404(uri):
+def _is_ignorable_404(uri):
     """
     Returns True if a 404 at the given URL *shouldn't* notify the site managers.
     """
