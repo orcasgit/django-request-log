@@ -1,7 +1,6 @@
-import datetime
-
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 
 
 UserModel = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
@@ -18,7 +17,7 @@ def _is_ignorable_404(uri):
 class RequestLogManager(models.Manager):
     def create_log(self, request):
         if request.user and request.session and request.session.session_key:
-            stamp = datetime.datetime.now()
+            stamp = timezone.now()
             url = request.get_full_path()
             if _is_ignorable_404(url):
                 return None
@@ -53,7 +52,7 @@ class LogManager(models.Manager):
                 # E just signifies we can remove these for the product version
                 varname = varname[1:]  # strip off the starting E
             if not stamp:
-                stamp = datetime.datetime.now()
+                stamp = timezone.now()
             log = self.model(user=request.user,
                              session=request.session.session_key,
                              varname=varname,
