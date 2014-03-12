@@ -11,6 +11,6 @@ install:
  - pip install coveralls
  - pip install -r requirements_test.txt
 script:
-  - coverage run --source=log manage.py test
+  - coverage run manage.py test
 after_success:
   coveralls
