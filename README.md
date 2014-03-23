@@ -1,5 +1,6 @@
-django-request-log [![Build Status](https://travis-ci.org/orcasgit/django-request-log.png)](https://travis-ci.org/orcasgit/django-request-log)
+django-request-log
 ==================
+[![Build Status](https://travis-ci.org/orcasgit/django-request-log.png)](https://travis-ci.org/orcasgit/django-request-log) [![Requirements Status](https://requires.io/github/orcasgit/django-request-log/requirements.png?branch=master)](https://requires.io/github/orcasgit/django-request-log/requirements/?branch=master)
 
 django-request-log is pluggable Django application to keep track user login and logout events and URLs views 
 developed at ORCAS.
