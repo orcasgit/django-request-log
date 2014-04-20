@@ -1,5 +1,7 @@
 *.pyc
 *.DS_Store
+*.tox
+*~
+env
 dist
 django_request_log.egg-info
-*~

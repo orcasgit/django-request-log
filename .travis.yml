@@ -1,17 +1,30 @@
 ---
 
 language: python
-python:
- - "2.6"
- - "2.7"
- - "3.2"
- - "3.3"
- - "pypy"
+python: 3.3
+env:
+  - TOX_ENV=pypy-trunk
+  - TOX_ENV=pypy-1.6.X
+  - TOX_ENV=pypy-1.5.X
+  - TOX_ENV=pypy-1.4.X
+  - TOX_ENV=py33-trunk
+  - TOX_ENV=py33-1.6.X
+  - TOX_ENV=py33-1.5.X
+  - TOX_ENV=py32-trunk
+  - TOX_ENV=py32-1.6.X
+  - TOX_ENV=py32-1.5.X
+  - TOX_ENV=py27-trunk
+  - TOX_ENV=py27-1.6.X
+  - TOX_ENV=py27-1.5.X
+  - TOX_ENV=py27-1.4.X
+  - TOX_ENV=py26-1.6.X
+  - TOX_ENV=py26-1.5.X
+  - TOX_ENV=py26-1.4.X
 install:
- - pip install coveralls
- - pip install -r requirements_test.txt
+  - pip install coveralls
+  - pip install -r requirements/test.txt
 script:
-  - coverage run manage.py test log
+  - tox -e $TOX_ENV -- --with-coverage
   - coverage report -m
 after_success:
   coveralls --verbose
