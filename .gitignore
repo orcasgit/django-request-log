@@ -2,6 +2,7 @@
 *.DS_Store
 *.tox
 *~
+.coverage
 env
 dist
 django_request_log.egg-info
