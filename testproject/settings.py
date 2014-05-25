@@ -17,6 +17,7 @@ DATABASES = {
     }
 }
 INSTALLED_APPS = (
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -32,10 +33,10 @@ MIDDLEWARE_CLASSES = (
 )
 NOSE_ARGS = [
     '--logging-clear-handlers',
-    '--tests=log.tests.test_log',
     '-s',
 ]
 
+USE_TZ = True
 ROOT_URLCONF = 'testproject.urls'
 SECRET_KEY = '&6hr-f+2+5k!$-oq6*l7p79+^+txtckz7imdoi%!a&0h1t3d(@'
 TEMPLATE_DIRS = (os.path.join(PROJECT_PATH, 'templates'),)

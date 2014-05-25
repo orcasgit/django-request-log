@@ -1,6 +1,8 @@
 import factory
 
+from datetime import datetime
 from django.contrib.auth.models import User
+from django.utils.timezone import utc
 
 from log.models import Log, RequestLog
 
@@ -24,6 +26,14 @@ class UserFactory(factory.Factory):
 class LogFactory(factory.Factory):
     FACTORY_FOR = Log
 
+    session = factory.Sequence(lambda n: 'session{0}'.format(n))
+    varname = factory.Sequence(lambda n: 'varname{0}'.format(n))
+    stamp = datetime.utcnow().replace(tzinfo=utc)
+    value = factory.Sequence(lambda n: 'value{0}'.format(n))
+
 
 class RequestLogFactory(factory.Factory):
     FACTORY_FOR = RequestLog
+
+    session = factory.Sequence(lambda n: 'session{0}'.format(n))
+    stamp = datetime.utcnow().replace(tzinfo=utc)
