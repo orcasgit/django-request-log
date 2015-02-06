@@ -6,6 +6,7 @@ import django
 from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
 from django.test import TestCase
+from django.utils import timezone
 from django.utils.formats import date_format
 from nose.tools import eq_
 
@@ -46,7 +47,7 @@ class TestLogAdmin(TestCase):
         self.assertRegexpMatches(
             res.content.decode(), '<tr.*%s.*%s.*%s.*%s.*%s.*</tr>' % (
                 log.user.username, log.session, log.varname,
-                date_format(log.stamp), log.value
+                date_format(timezone.localtime(log.stamp)), log.value
             ))
         if self.django_version[0] >= '1' and self.django_version[1] > '4':
             self.assertContains(res, change_url)
@@ -71,17 +72,18 @@ class TestLogAdmin(TestCase):
         request_log = RequestLogFactory(user=self.user,
                                         url=reverse('login'))
         request_log.save()
+        request_log_stamp = date_format(timezone.localtime(request_log.stamp))
         change_url = self._admin_url(RequestLog, request_log)
         res = self.client.get(list_url)
         self.assertContains(res, '2 request logs')
         self.assertContains(res, request_log.user.username)
         self.assertContains(res, request_log.session)
         self.assertContains(res, request_log.url)
-        self.assertContains(res, date_format(request_log.stamp))
+        self.assertContains(res, request_log_stamp)
         self.assertRegexpMatches(
             res.content.decode(), '<tr.*%s.*%s.*%s.*%s.*</tr>' % (
                 request_log.user.username, request_log.session,
-                request_log.url, date_format(request_log.stamp)))
+                request_log.url, request_log_stamp))
         if self.django_version[0] >= '1' and self.django_version[1] > '4':
             self.assertContains(res, change_url)
         else:
