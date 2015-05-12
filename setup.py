@@ -9,7 +9,7 @@ setup(
     author_email='pperez@orcasinc.com',
     url='https://github.com/orcasgit/django-request-log',
     license='Apache 2.0',
-    packages=['log'],
+    packages=['log', 'log.migrations', 'log.south_migrations'],
     package_data={'': ['LICENCE']},
     include_package_data=True,
     zip_safe=False,
