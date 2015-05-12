@@ -7,8 +7,9 @@ from django.utils.timezone import utc
 from log.models import Log, RequestLog
 
 
-class UserFactory(factory.Factory):
-    FACTORY_FOR = User
+class UserFactory(factory.DjangoModelFactory):
+    class Meta:
+        model = User
 
     username = factory.Sequence(lambda n: 'username{0}'.format(n))
     password = 'password'
@@ -23,8 +24,9 @@ class UserFactory(factory.Factory):
         return user
 
 
-class LogFactory(factory.Factory):
-    FACTORY_FOR = Log
+class LogFactory(factory.DjangoModelFactory):
+    class Meta:
+        model = Log
 
     session = factory.Sequence(lambda n: 'session{0}'.format(n))
     varname = factory.Sequence(lambda n: 'varname{0}'.format(n))
@@ -32,8 +34,9 @@ class LogFactory(factory.Factory):
     value = factory.Sequence(lambda n: 'value{0}'.format(n))
 
 
-class RequestLogFactory(factory.Factory):
-    FACTORY_FOR = RequestLog
+class RequestLogFactory(factory.DjangoModelFactory):
+    class Meta:
+        model = RequestLog
 
     session = factory.Sequence(lambda n: 'session{0}'.format(n))
     stamp = datetime.utcnow().replace(tzinfo=utc)
