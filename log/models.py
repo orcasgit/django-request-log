@@ -4,6 +4,7 @@ from django.utils import timezone
 
 
 UserModel = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
+MAX_URL_LENGTH = 500
 
 
 def _is_ignorable_404(uri):
@@ -22,7 +23,7 @@ class RequestLogManager(models.Manager):
             if _is_ignorable_404(url):
                 return None
             # Truncate in case it doesn't fit
-            url = url[:self.model._meta.get_field_by_name('url')[0].max_length]
+            url = url[:500]
             log = self.model(user=request.user,
                              session=request.session.session_key,
                              url=url,
@@ -36,7 +37,7 @@ class RequestLogManager(models.Manager):
 class RequestLog(models.Model):
     user = models.ForeignKey(UserModel)
     session = models.CharField(max_length=40)
-    url = models.CharField(max_length=500)
+    url = models.CharField(max_length=MAX_URL_LENGTH)
     stamp = models.DateTimeField(null=True)
     objects = RequestLogManager()
 
