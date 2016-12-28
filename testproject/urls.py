@@ -1,4 +1,4 @@
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 from django.contrib import admin
 
 from . import views
@@ -6,8 +6,8 @@ from . import views
 
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    (r'^admin/', include(admin.site.urls)),
+urlpatterns = [
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^create-log/$', views.create_requestlog, name='create_requestlog'),
-    (r'', include('django.contrib.auth.urls')),
-)
+    url(r'', include('django.contrib.auth.urls')),
+]

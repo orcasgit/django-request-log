@@ -40,4 +40,15 @@ MIDDLEWARE_CLASSES = (
 USE_TZ = True
 ROOT_URLCONF = 'testproject.urls'
 SECRET_KEY = '&6hr-f+2+5k!$-oq6*l7p79+^+txtckz7imdoi%!a&0h1t3d(@'
-TEMPLATE_DIRS = (os.path.join(PROJECT_PATH, 'templates'),)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(PROJECT_PATH, 'templates')],
+        'OPTIONS': {
+            'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ],
+        },
+    },
+]
