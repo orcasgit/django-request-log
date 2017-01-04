@@ -44,16 +44,7 @@ class TestLogAdmin(TestCase):
         change_url = self._admin_url(Log, log)
         res = self.client.get(list_url)
         self.assertContains(res, '5 logs')
-        self.assertRegexpMatches(
-            res.content.decode(), '<tr.*%s.*%s.*%s.*%s.*%s.*</tr>' % (
-                log.user.username, log.session, log.varname,
-                date_format(timezone.localtime(log.stamp)), log.value
-            ))
-        if self.django_version[0] >= '1' and self.django_version[1] > '4':
-            self.assertContains(res, change_url)
-        else:
-            # Django 1.4 used relative change url
-            self.assertContains(res, '%i/' % log.id)
+        self.assertContains(res, change_url)
         self.assertContains(res, add_url)
 
     def test_requestlog_list(self):
@@ -80,15 +71,8 @@ class TestLogAdmin(TestCase):
         self.assertContains(res, request_log.session)
         self.assertContains(res, request_log.url)
         self.assertContains(res, request_log_stamp)
-        self.assertRegexpMatches(
-            res.content.decode(), '<tr.*%s.*%s.*%s.*%s.*</tr>' % (
-                request_log.user.username, request_log.session,
-                request_log.url, request_log_stamp))
-        if self.django_version[0] >= '1' and self.django_version[1] > '4':
-            self.assertContains(res, change_url)
-        else:
-            # Django 1.4 used relative change url
-            self.assertContains(res, '%i/' % request_log.id)
+
+        self.assertContains(res, change_url)
         self.assertContains(res, add_url)
 
     def _admin_url(self, model, obj=None):
